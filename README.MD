@@ -133,7 +133,7 @@ Here i will register all my major steps related to how i've thinked about the de
 1 - I've started planning some basic UI that could handle all the bussiness requirements.
 
 <div align="center">
-    <img src="client/public/logo.png" alt="front-end-basic-ui"/>
+    <img src="client/public/front-end-basic-ui.png" alt="front-end-basic-ui"/>
 </div>
 
 
