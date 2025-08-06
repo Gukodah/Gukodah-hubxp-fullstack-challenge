@@ -1,0 +1,43 @@
+# === Global ignores ===
+*.log
+*.env
+.env.*
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# === client (Next.js) ===
+client/.next/
+client/node_modules/
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+
+# === server (Django) ===
+server/db.sqlite3
+server/venv/
+server/*.pyc
+server/.env
+server/.env.*
+
+# === VSCode / Editor configs ===
+.vscode/
+.idea/
+
+# === Docker volumes (optional) ===
+**/pgdata/
+docker-entrypoint-initdb.d/
+
+# === OS files ===
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === Mac/Linux ===
+*.swp
+*.swo
+
+# === Railway-specific (optional) ===
+.railway/
+

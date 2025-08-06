@@ -1,0 +1,73 @@
+version: "3.9"
+services:
+  postgres:
+    container_name: pg_container
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    user: "999:999"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: master
+    ports:
+      - "5433:5432"
+    volumes:
+      - game_market_postgres_data:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.5
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5051:80"
+    volumes:
+      - game_market_pgadmin_data:/var/lib/pgadmin
+    networks:
+      - custom_net
+  server:
+    build: ./../server
+    container_name: server_container
+    ports:
+      - "3000:3000"
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.6
+    depends_on: [ postgres ]
+    environment:
+      DATABASE_HOST: "10.5.0.5"
+      DATABASE_PORT: "5432"
+      DATABASE_USERNAME: "root"
+      DATABASE_PASSWORD: "root"
+      DATABASE_NAME: "master"
+      TIMEZONE: "America/Sao_Paulo"
+  client:
+    build:
+      context: ./../client
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:3000
+    container_name: client_container
+    ports:
+      - "80:80"
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.7
+    depends_on: [ postgres, server ]
+volumes:
+  tasks_app_data:
+  tasks_app_pgadmin_data:
+networks:
+  custom_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "10.5.0.0/24"
+          gateway: "10.5.0.1"
