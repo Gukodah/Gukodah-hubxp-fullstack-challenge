@@ -79,16 +79,13 @@ This section should list any major frameworks/libraries used on this project.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-instructions on setting up your project locally.
+Instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- You will need some Docker Engine available to execute the application containers locally.
+(Hint: During the development process i've used the Linux/Debian Docker Engine with command line interface to manage it.)
 
 ### Installation
 
@@ -125,6 +122,25 @@ Use this space to show useful examples of how a project can be used. Additional 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Journal of Development Process
+
+Here i will register all my major steps related to how i've thinked about the development process.
+
+### Front-end
+
+1 - I've started planning some basic UI that could handle all the bussiness requirements.
+
+<div align="center">
+    <img src="client/public/logo.png" alt="front-end-basic-ui"/>
+</div>
+
+
+### Back-end
+
+### Devops
+
 
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
