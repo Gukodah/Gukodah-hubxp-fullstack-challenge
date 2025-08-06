@@ -75,13 +75,14 @@ WSGI_APPLICATION = 'tasks_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+#PROD-CHECK-FOR-THIS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("PGDATABASE", "postgres"),
-        'USER': os.getenv("PGUSER", "postgres"),
-        'PASSWORD': os.getenv("PGPASSWORD", "password"),
-        'HOST': os.getenv("PGHOST", "localhost"),
+        'NAME': os.getenv("PGDATABASE", "master"),
+        'USER': os.getenv("PGUSER", "root"),
+        'PASSWORD': os.getenv("PGPASSWORD", "root"),
+        'HOST': os.getenv("PGHOST", "postgres"),
         'PORT': os.getenv("PGPORT", "5432"),
     }
 }
@@ -122,6 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -130,3 +132,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #PROD-CHECK-FOR-THIS
 CORS_ALLOW_ALL_ORIGINS = True
+
+# CORS_ALLOWED_ORIGINS = [
+#     "https://seu-frontend.up.railway.app",
+#     "http://localhost:3000",
+# ]

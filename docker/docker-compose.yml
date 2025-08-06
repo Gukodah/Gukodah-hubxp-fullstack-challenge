@@ -14,8 +14,7 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - game_market_postgres_data:/var/lib/postgresql/data
-      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - tasks_app_data:/var/lib/postgresql/data
     networks:
       custom_net:
         ipv4_address: 10.5.0.5
@@ -29,11 +28,13 @@ services:
     ports:
       - "5051:80"
     volumes:
-      - game_market_pgadmin_data:/var/lib/pgadmin
+      - tasks_app_pgadmin_data:/var/lib/pgadmin
     networks:
       - custom_net
   server:
-    build: ./../server
+    build: 
+      context: ./../server
+      dockerfile: Dockerfile
     container_name: server_container
     ports:
       - "3000:3000"
@@ -48,6 +49,8 @@ services:
       DATABASE_PASSWORD: "root"
       DATABASE_NAME: "master"
       TIMEZONE: "America/Sao_Paulo"
+    volumes:
+      - ./../server:/app
   client:
     build:
       context: ./../client
