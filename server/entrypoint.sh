@@ -16,6 +16,6 @@ mkdir -p staticfiles
 python manage.py collectstatic --noinput
 
 echo "🚀 Starting Gunicorn"
-exec gunicorn tasks_app.wsgi:application \
+exec gunicorn project.wsgi:application \
      --bind 0.0.0.0:8000 \
      --workers 3

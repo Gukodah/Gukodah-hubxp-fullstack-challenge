@@ -37,7 +37,7 @@ services:
       dockerfile: Dockerfile
     container_name: server_container
     ports:
-      - "3000:3000"
+      - "8000:8000"
     networks:
       custom_net:
         ipv4_address: 10.5.0.6
@@ -56,10 +56,10 @@ services:
       context: ./../client
       dockerfile: Dockerfile
       args:
-        VITE_API_BASE_URL: http://localhost:3000
+        NEXT_PUBLIC_API_URL: http://server:8000
     container_name: client_container
     ports:
-      - "80:80"
+      - "3000:3000"
     networks:
       custom_net:
         ipv4_address: 10.5.0.7
